@@ -11,6 +11,8 @@ public class ControlWindow
 {
     final private int MAX_SIZE = 250;
     final private int MIN_SIZE = 100;
+    private final int WINDOW_WIDTH = 580;
+    private final int WINDOW_HEIGHT = 660;
     private Stage window;
     private GridPane content;
     private Label antsLabel;
@@ -116,11 +118,9 @@ public class ControlWindow
 
                  if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
                      hInput.clear();
-//                     hInput.setPromptText("!" + String.valueOf(MIN_SIZE) + " - " + String.valueOf(MAX_SIZE));
                      return; }
                  if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
                      wInput.clear();
-//                     wInput.setPromptText("!" + String.valueOf(MIN_SIZE) + " - " + String.valueOf(MAX_SIZE));
                      return; }
 
                  Main.getVisualWindows().add(new VisualWindow(tmpW, tmpH));
@@ -128,9 +128,7 @@ public class ControlWindow
              }
              catch (NumberFormatException e1) {
                  hInput.clear();
-//                 hInput.setPromptText("(!) 50 - 250");
                  wInput.clear();
-//                 wInput.setPromptText("(!) 50 - 250");
                  return; }
 
 
@@ -194,7 +192,7 @@ public class ControlWindow
 
         operateGUI();
 //        content.getStylesheets().add("ControlWindowStyle.css");
-        window.setScene(new Scene(content, 580, 660));
+        window.setScene(new Scene(content, WINDOW_WIDTH, WINDOW_HEIGHT));
         window.show();
         System.out.println("Created new Control Window");
 

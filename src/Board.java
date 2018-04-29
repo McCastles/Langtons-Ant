@@ -9,13 +9,14 @@ public class Board {
         this.height = height;
         this.width = width;
         this.table = new int[height][width];
-
-        for(int i = 0; i < height; i++)
-            for(int j = 0; j < width; j++)
-                table[i][j] = 0;
 //        System.out.println(Arrays.deepToString(table));
 
     }
+
+    public void setTableElement(int x, int y, int value) {
+        this.table[x][y] = value;
+    }
+
 
     //TODO put ant on board
 

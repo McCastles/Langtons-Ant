@@ -8,7 +8,15 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/*TODO
+ * all fields in window must be filled
+ * BUG: duplicate names
+ *
+ * */
+
 public class AntCreatorWindow {
+    private final static int WINDOW_WIDTH = 400;
+    private final static int WINDOW_HEIGHT = 250;
 
     public static void createDialogWindow(ControlWindow controlWindow, ArrayList antListCurrent)
     {
@@ -46,17 +54,9 @@ public class AntCreatorWindow {
         colorChoice.getItems().addAll("Black", "Blue", "Red", "Green", "Yellow", "Orange");
         colorChoice.setValue("Black");
         colorChoice.setStyle("-fx-background-color: gray");
-        colorChoice.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
-            switch (newValue)
-            {
-                case "Black": colorChoice.setStyle("-fx-background-color: gray"); break;
-                case "Blue": colorChoice.setStyle("-fx-background-color: CornflowerBlue"); break;
-                case "Red": colorChoice.setStyle("-fx-background-color: red"); break;
-                case "Green": colorChoice.setStyle("-fx-background-color: SpringGreen "); break;
-                case "Yellow": colorChoice.setStyle("-fx-background-color: yellow"); break;
-                case "Orange": colorChoice.setStyle("-fx-background-color: orange"); break;
-            }
-        });
+        colorChoice.getSelectionModel().selectedItemProperty().addListener(
+                (v, oldValue, newValue) -> Ant.assignColor(newValue, colorChoice)
+        );
         pane.add(colorChoice,1,2);
 
         /*DIRECTION*/
@@ -124,7 +124,7 @@ public class AntCreatorWindow {
 
         /*APPLY*/
 //        pane.getStylesheets().add("ControlWindowStyle.css");
-        dialogWindow.setScene(new Scene(pane, 400,250));
+        dialogWindow.setScene(new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT));
         dialogWindow.show();
     }
 }

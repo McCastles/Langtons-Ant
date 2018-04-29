@@ -21,6 +21,14 @@ public class Main extends Application {
             AntCreatorWindow.createDialogWindow(controlWindow, antListCurrent)
         );
 
+        /*
+         * TODO set min visualwindow size
+         * TODO check if ant's pos more than window
+         * TODO finished controlwindow => finished all
+         * TODO CSS
+         * TODO status bar in VisualWindow
+         * */
+
 
 
        /* PixelWriter pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
