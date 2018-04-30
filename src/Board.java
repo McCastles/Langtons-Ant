@@ -2,7 +2,7 @@
 public class Board {
     private int width;
     private int height;
-    int[][] table;
+    private int[][] table;
 
     public Board(int width, int height)
     {
@@ -11,6 +11,18 @@ public class Board {
         this.table = new int[height][width];
 //        System.out.println(Arrays.deepToString(table));
 
+    }
+
+    public int getTableElement(int x, int y) {
+        return table[x][y];
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public void setTableElement(int x, int y, int value) {

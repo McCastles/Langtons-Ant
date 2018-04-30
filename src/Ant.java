@@ -1,5 +1,9 @@
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
+import javax.swing.plaf.DimensionUIResource;
 
 
 public class Ant {
@@ -10,7 +14,7 @@ public class Ant {
     private boolean isAlive;
     private int x;
     private int y;
-    private String color;
+    private String color; //TODO change String to Color
     private Dir dir;
 
 //    public Ant(boolean isAlive, int x, int y, String color, int dir)
@@ -22,6 +26,74 @@ public class Ant {
         this.y = y;
         this.color = color;
         this.dir = dir;
+    }
+
+    public void paintCell(GridPane pane, int x, int y, String color)
+    {
+        Rectangle rectangle = new Rectangle();
+
+        for (Node node : pane.getChildren())
+            if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y)
+                rectangle = (Rectangle) node;
+        switch (color)
+        {
+            case "Black": rectangle.setFill(Color.BLACK); break;
+            case "Blue": rectangle.setFill(Color.BLUE); break;
+            case "Red": rectangle.setFill(Color.RED); break;
+            case "Green": rectangle.setFill(Color.GREEN); break;
+            case "Yellow": rectangle.setFill(Color.YELLOW); break;
+            case "Orange": rectangle.setFill(Color.ORANGE); break;
+            case "White": rectangle.setFill(Color.WHITE); break;
+        }
+    }
+
+    public void antStep(Board board, GridPane pane)
+    {
+        if (board.getTableElement(x,y) == 0) {
+
+            board.setTableElement(x,y,1);
+            paintCell(pane, x, y, color);
+            antTurn(Dir.RIGHT); }
+
+        else {
+            board.setTableElement(x,y,0);
+            paintCell(pane, x, y, "White");
+            antTurn(Dir.LEFT); }
+
+        antMove(board);
+    }
+
+
+    private void antMove(Board board)
+    {
+        switch (dir)
+        {
+            case UP: if (y == 0) isAlive = false; else y--; break;
+            case RIGHT: if (x == (board.getWidth()-1)) isAlive = false; else x++; break;
+            case DOWN: if (y == (board.getHeight()-1)) isAlive = false; else y++; break;
+            case LEFT: if (x == 0) isAlive = false; else x--; break;
+        }
+
+    }
+
+    private void antTurn(Dir direction)
+    {
+        if (direction == Dir.RIGHT)
+            switch (dir)
+            {
+                case UP: dir = Dir.RIGHT;; break;
+                case RIGHT: dir = Dir.DOWN; break;
+                case DOWN: dir = Dir.LEFT; break;
+                case LEFT: dir = Dir.UP; break;
+            }
+        else
+            switch (dir)
+            {
+                case UP: dir = Dir.LEFT; break;
+                case RIGHT: dir = Dir.UP; break;
+                case DOWN: dir = Dir.RIGHT; break;
+                case LEFT: dir = Dir.DOWN; break;
+            }
     }
 
     public static void assignColor(String color, Node node)
@@ -60,5 +132,9 @@ public class Ant {
 
     public String getColor() {
         return color;
+    }
+
+    public void setDir(Dir dir) {
+        this.dir = dir;
     }
 }

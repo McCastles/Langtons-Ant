@@ -6,20 +6,23 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-
-    private static ArrayList<VisualWindow> visualWindows = new ArrayList<>();
+    private static VisualWindow visualWindow;
     private static ArrayList<Ant> antListCurrent = new ArrayList<>();
+    private static ControlWindow controlWindow;
+
 
 
     @Override
     public void start(Stage primaryStage) {
 
-        ControlWindow controlWindow = new ControlWindow(primaryStage);
+        controlWindow = new ControlWindow(primaryStage);
 
         //TODO minus button
         controlWindow.getPlus().setOnAction(e ->
             AntCreatorWindow.createDialogWindow(controlWindow, antListCurrent)
         );
+
+
 
         /*
          * TODO set min visualwindow size
@@ -41,7 +44,12 @@ public class Main extends Application {
                 pixelWriter.setColor(i, j, b);*/
     }
 
-    public static ArrayList<VisualWindow> getVisualWindows() { return visualWindows; }
+    public static ControlWindow getControlWindow() {
+        return controlWindow;
+    }
+
+    public static void setVisualWindow(VisualWindow newVisualWindow)
+    { visualWindow = newVisualWindow; controlWindow.getStartButton().setDisable(true); }
 
     public static ArrayList<Ant> getAntListCurrent() { return antListCurrent; }
 

@@ -31,11 +31,18 @@ public class ControlWindow
     private TextField hInput;
     private Button startButton;
 
+    public Button getStartButton() {
+        return startButton;
+    }
+
+
+
     private void operateGUI()
     {
         /*SET TITLE*/
         window.setTitle("Control Window");
         window.setResizable(false);
+        /*TODO close program*/
 
         /*SET CONTENT PANE*/
         content.setPadding(new Insets(0,5,5,5));
@@ -115,6 +122,7 @@ public class ControlWindow
              try{
                  int tmpW = Integer.parseInt(wInput.getText());
                  int tmpH = Integer.parseInt(hInput.getText());
+                 int tmpSteps = Integer.parseInt(stepsInput.getText());
 
                  if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
                      hInput.clear();
@@ -123,15 +131,13 @@ public class ControlWindow
                      wInput.clear();
                      return; }
 
-                 Main.getVisualWindows().add(new VisualWindow(tmpW, tmpH));
+                 Main.setVisualWindow(new VisualWindow(tmpW, tmpH, tmpSteps));
                  System.out.printf("Created new Visual Window, size: %d by %d cells\n", tmpW, tmpH);
              }
              catch (NumberFormatException e1) {
                  hInput.clear();
                  wInput.clear();
                  return; }
-
-
 
                  });
     }
