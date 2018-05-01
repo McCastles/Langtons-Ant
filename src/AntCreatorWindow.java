@@ -1,8 +1,13 @@
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 public class AntCreatorWindow {
     private final static int WINDOW_WIDTH = 400;
     private final static int WINDOW_HEIGHT = 250;
+    private final static int indicatorSize = 20;
 
     public static void createDialogWindow(ControlWindow controlWindow, ArrayList antListCurrent)
     {
@@ -51,13 +57,25 @@ public class AntCreatorWindow {
         pane.add(colorLabel, 0,2);
 
         ChoiceBox<String> colorChoice = new ChoiceBox<>();
+
+        Rectangle colorIndicator = new Rectangle(indicatorSize, indicatorSize);
+        colorIndicator.setStrokeWidth(1);
+        colorIndicator.setStroke(Color.BLACK);
+        colorIndicator.setFill(Color.BLACK);
+
         colorChoice.getItems().addAll("Black", "Blue", "Red", "Green", "Yellow", "Orange");
         colorChoice.setValue("Black");
-        colorChoice.setStyle("-fx-background-color: gray");
+
         colorChoice.getSelectionModel().selectedItemProperty().addListener(
-                (v, oldValue, newValue) -> Ant.assignColor(newValue, colorChoice)
-        );
-        pane.add(colorChoice,1,2);
+                (v, oldValue, newValue) ->
+                    colorIndicator.setFill( Ant.assignColor(newValue) ));
+
+
+
+        HBox colorBoxIndicator = new HBox(20);
+        colorBoxIndicator.getChildren().addAll(colorIndicator, colorChoice);
+
+        pane.add(colorBoxIndicator,1,2);
 
         /*DIRECTION*/
         Label dirLabel = new Label("Direction:");
@@ -122,7 +140,7 @@ public class AntCreatorWindow {
                                 aliveCheck.isSelected(),
                                 Integer.parseInt(xInput.getText()),
                                 Integer.parseInt(yInput.getText()),
-                                colorChoice.getValue(),
+                                Ant.assignColor(colorChoice.getValue()),
                                 tmpDir ));
 
                         controlWindow.addToAntList(idInput.getText());

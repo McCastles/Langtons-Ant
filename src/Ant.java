@@ -11,7 +11,8 @@ public class Ant{
     private boolean isAlive;
     private int x;
     private int y;
-    private String color; //TODO change String to Color
+    private Color color;
+//    private String color;
     private Dir dir;
 
     /* CLONING CONSTRUCTOR */
@@ -26,7 +27,7 @@ public class Ant{
     }
 
     /* CONSTRUCTOR */
-    public Ant(String id, boolean isAlive, int x, int y, String color, Dir dir)
+    public Ant(String id, boolean isAlive, int x, int y, Color color, Dir dir)
     {
         this.id = id;
         this.isAlive = isAlive;
@@ -36,23 +37,15 @@ public class Ant{
         this.dir = dir;
     }
 
-    public void paintCell(GridPane pane, int x, int y, String color)
+    public void paintCell(GridPane pane, int x, int y, Color color)
     {
         Rectangle rectangle = new Rectangle();
 
         for (Node node : pane.getChildren())
             if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y)
                 rectangle = (Rectangle) node;
-        switch (color)
-        {
-            case "Black": rectangle.setFill(Color.BLACK); break;
-            case "Blue": rectangle.setFill(Color.BLUE); break;
-            case "Red": rectangle.setFill(Color.RED); break;
-            case "Green": rectangle.setFill(Color.GREEN); break;
-            case "Yellow": rectangle.setFill(Color.YELLOW); break;
-            case "Orange": rectangle.setFill(Color.ORANGE); break;
-            case "White": rectangle.setFill(Color.WHITE); break;
-        }
+
+        rectangle.setFill(color);
     }
 
     public void antStep(Board board, GridPane pane)
@@ -65,7 +58,7 @@ public class Ant{
 
         else {
             board.setTableElement(x,y,0);
-            paintCell(pane, x, y, "White");
+            paintCell(pane, x, y, Color.WHITE);
             antTurn(Dir.LEFT); }
 
         antMove(board);
@@ -105,17 +98,19 @@ public class Ant{
     }
 
 
-    public static void assignColor(String color, Node node)
+    public static Color assignColor(String color)
     {
         switch (color)
         {
-            case "Black": node.setStyle("-fx-background-color: gray"); break;
-            case "Blue": node.setStyle("-fx-background-color: CornflowerBlue"); break;
-            case "Red": node.setStyle("-fx-background-color: red"); break;
-            case "Green": node.setStyle("-fx-background-color: SpringGreen "); break;
-            case "Yellow": node.setStyle("-fx-background-color: yellow"); break;
-            case "Orange": node.setStyle("-fx-background-color: orange"); break;
+            case "Black": return Color.BLACK;
+            case "Blue": return Color.BLUE;
+            case "Red": return Color.RED;
+            case "Green": return Color.GREEN;
+            case "Yellow": return Color.YELLOW;
+            case "Orange": return Color.ORANGE;
         }
+
+        return Color.BLACK;
     }
 
     public String getId() {
@@ -139,7 +134,7 @@ public class Ant{
         return y;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 

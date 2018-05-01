@@ -3,17 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1812740e-57de-4a82-8a4f-2f393f486c51" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Ant$Dir.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Ant$Dir.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Ant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Ant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/AntCreatorWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/AntCreatorWindow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/ControlWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/ControlWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/VisualWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/VisualWindow$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/VisualWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WUT_sem2_LangtonAnt_Java/VisualWindow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AntCreatorWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AntCreatorWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ControlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ControlWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VisualWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VisualWindow.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +24,20 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="18">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisualWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/VisualWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="66" column="45" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,17 +45,35 @@
       <file leaf-file-name="AntCreatorWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AntCreatorWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1998">
-              <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
+            <state relative-caret-position="-1075">
+              <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ant.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ControlWindow.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ControlWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#operateGUI#0;class#ControlWindow#0" />
+                <element signature="method#addToAntList#0;class#ControlWindow#0" />
+                <element signature="method#ControlWindow#0;class#ControlWindow#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            <state relative-caret-position="1481">
+              <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,6 +87,7 @@
     <findStrings>
       <find>bord</find>
       <find>RATE</find>
+      <find>WHITE</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -72,11 +100,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Board.java" />
-        <option value="$PROJECT_DIR$/src/AntCreatorWindow.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/VisualWindow.java" />
-        <option value="$PROJECT_DIR$/src/ControlWindow.java" />
         <option value="$PROJECT_DIR$/src/Ant.java" />
+        <option value="$PROJECT_DIR$/src/AntCreatorWindow.java" />
+        <option value="$PROJECT_DIR$/src/ControlWindow.java" />
       </list>
     </option>
   </component>
@@ -97,9 +125,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,11 +233,12 @@
       <workItem from="1525089816988" duration="6459000" />
       <workItem from="1525180635708" duration="4940000" />
       <workItem from="1525185847215" duration="1653000" />
+      <workItem from="1525188101064" duration="2260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25841000" />
+    <option name="totallyTimeSpent" value="28101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="32" width="1853" height="1048" extended-state="6" />
@@ -223,19 +252,19 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.22134832" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24986508" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24986508" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -256,6 +285,33 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AntCreatorWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1944">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -554,47 +610,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AntCreatorWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1998">
-          <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="18">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VisualWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ControlWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+        <state relative-caret-position="236">
+          <caret line="66" column="45" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#operateGUI#0;class#ControlWindow#0" />
-            <element signature="method#updateInfoBox#0;class#ControlWindow#0" />
-            <element signature="method#addToAntList#0;class#ControlWindow#0" />
-            <element signature="method#ControlWindow#0;class#ControlWindow#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="1481">
+          <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AntCreatorWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1075">
+          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ControlWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#operateGUI#0;class#ControlWindow#0" />
+            <element signature="method#addToAntList#0;class#ControlWindow#0" />
+            <element signature="method#ControlWindow#0;class#ControlWindow#0" />
           </folding>
         </state>
       </provider>
