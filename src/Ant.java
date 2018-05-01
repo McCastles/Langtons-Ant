@@ -3,10 +3,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import javax.swing.plaf.DimensionUIResource;
-
-
-public class Ant {
+public class Ant{
 
     public enum Dir {UP, RIGHT, DOWN, LEFT}
 
@@ -17,7 +14,18 @@ public class Ant {
     private String color; //TODO change String to Color
     private Dir dir;
 
-//    public Ant(boolean isAlive, int x, int y, String color, int dir)
+    /* CLONING CONSTRUCTOR */
+    public Ant(Ant ant)
+    {
+        this.id = ant.id;
+        this.isAlive = ant.isAlive;
+        this.x = ant.x;
+        this.y = ant.y;
+        this.color = ant.color;
+        this.dir = ant.dir;
+    }
+
+    /* CONSTRUCTOR */
     public Ant(String id, boolean isAlive, int x, int y, String color, Dir dir)
     {
         this.id = id;
@@ -96,6 +104,7 @@ public class Ant {
             }
     }
 
+
     public static void assignColor(String color, Node node)
     {
         switch (color)
@@ -134,7 +143,4 @@ public class Ant {
         return color;
     }
 
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
 }

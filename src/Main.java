@@ -10,8 +10,6 @@ public class Main extends Application {
     private static ArrayList<Ant> antListCurrent = new ArrayList<>();
     private static ControlWindow controlWindow;
 
-
-
     @Override
     public void start(Stage primaryStage) {
 
@@ -28,20 +26,10 @@ public class Main extends Application {
          * TODO set min visualwindow size
          * TODO check if ant's pos more than window
          * TODO finished controlwindow => finished all
-         * TODO CSS
+         * TODO CSSMain.getAntListCurrent()
          * TODO status bar in VisualWindow
          * */
 
-
-
-       /* PixelWriter pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
-        Color black = Color.BLACK;
-
-        pixelWriter.setColor(100, 100, black);*/
-
-        /*for (int j = 1; j < 50; j++)
-            for (int i = 1; i < 50; i++)
-                pixelWriter.setColor(i, j, b);*/
     }
 
     public static ControlWindow getControlWindow() {

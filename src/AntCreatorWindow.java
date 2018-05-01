@@ -104,21 +104,40 @@ public class AntCreatorWindow {
 
         okButton.setOnAction(e ->
                 {
-                    Ant.Dir tmpDir = Ant.Dir.UP;
-                    if (rightRadioButton.isSelected()) tmpDir = Ant.Dir.RIGHT;
-                    if (downRadioButton.isSelected()) tmpDir = Ant.Dir.DOWN;
-                    if (leftRadioButton.isSelected()) tmpDir = Ant.Dir.LEFT;
+                    try{
+                        for(Ant ant : Main.getAntListCurrent())
+                            if (ant.getId().equals(idInput.getText())) {
+                                idInput.clear();
+                                idInput.setPromptText("Ant with this ID already exists");
+                                return; }
 
-                    antListCurrent.add( new Ant(
-                            idInput.getText(),
-                            aliveCheck.isSelected(),
-                            Integer.parseInt(xInput.getText()),
-                            Integer.parseInt(yInput.getText()),
-                            colorChoice.getValue(),
-                            tmpDir ));
 
-                    controlWindow.addToAntList(idInput.getText());
-                    dialogWindow.close();
+                        Ant.Dir tmpDir = Ant.Dir.UP;
+                        if (rightRadioButton.isSelected()) tmpDir = Ant.Dir.RIGHT;
+                        if (downRadioButton.isSelected()) tmpDir = Ant.Dir.DOWN;
+                        if (leftRadioButton.isSelected()) tmpDir = Ant.Dir.LEFT;
+
+                        antListCurrent.add( new Ant(
+                                idInput.getText(),
+                                aliveCheck.isSelected(),
+                                Integer.parseInt(xInput.getText()),
+                                Integer.parseInt(yInput.getText()),
+                                colorChoice.getValue(),
+                                tmpDir ));
+
+                        controlWindow.addToAntList(idInput.getText());
+                        dialogWindow.close();
+
+                    } catch (NumberFormatException e1)
+                    {
+                        idInput.clear();
+                        idInput.setPromptText("You must fill this filed first");
+                        xInput.clear();
+                        xInput.setPromptText("You must fill this filed first");
+                        yInput.clear();
+                        yInput.setPromptText("You must fill this filed first");}
+
+
                 }
         );
 

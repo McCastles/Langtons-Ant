@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class VisualWindow {
     final private int CELLSIZE = 6;
     private int steps = 0;
-//    private int stepsLimit = 0;
     private Stage window;
     private VBox content;
     private GridPane pane;
@@ -28,9 +27,11 @@ public class VisualWindow {
 
 
     public VisualWindow(int width, int height, int stepsLimit) {
-        /*ANT LIST*/
-        antList = new ArrayList<>(Main.getAntListCurrent());
 
+        /*ANT LIST*/
+        antList = new ArrayList<>();
+        for (Ant ant : Main.getAntListCurrent())
+            antList.add( new Ant(ant) );
 
         /*BOARD*/
         board = new Board(width, height);
@@ -90,13 +91,8 @@ public class VisualWindow {
             startButton.setDisable(true);
             beginGameLoop(stepsLimit);});
 
-
-
         HBox buttons = new HBox(20);
         buttons.getChildren().addAll(startButton, stopButton, stepsLabel, stepsOutput);
-
-
-
 
         /*APPLYING EVERYTHING ON THE SCREEN*/
         content.getChildren().addAll(pane, buttons);
@@ -106,6 +102,7 @@ public class VisualWindow {
     }
 
 
+    /* lambda? */
     private void beginGameLoop(int stepsLimit)
     {
         Thread t = new Thread (
@@ -117,14 +114,11 @@ public class VisualWindow {
                 threadRunning = true;
                 while(threadRunning){
 
-//                    System.out.println(steps);
-
                     for (Ant ant: antList)
                         if (ant.getIsAlive())
                             ant.antStep(board, pane);
 
                     steps++;
-//                    stepsOutput.setText(""+steps);
 
                     if (steps == stepsLimit)
                     {

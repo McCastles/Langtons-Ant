@@ -31,12 +31,6 @@ public class ControlWindow
     private TextField hInput;
     private Button startButton;
 
-    public Button getStartButton() {
-        return startButton;
-    }
-
-
-
     private void operateGUI()
     {
         /*SET TITLE*/
@@ -136,8 +130,7 @@ public class ControlWindow
              }
              catch (NumberFormatException e1) {
                  hInput.clear();
-                 wInput.clear();
-                 return; }
+                 wInput.clear(); }
 
                  });
     }
@@ -206,6 +199,6 @@ public class ControlWindow
 
     public Button getPlus() { return plus; }
 
-
+    public Button getStartButton() { return startButton; }
 
 }
