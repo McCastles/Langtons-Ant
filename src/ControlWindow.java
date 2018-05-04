@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-
 public class ControlWindow
 {
     private final int MAX_SIZE = 200;
@@ -32,35 +31,17 @@ public class ControlWindow
     private Button startButton;
     private static ArrayList<Ant> antListCurrent;
 
-    public static ArrayList<Ant> getAntListCurrent() { return antListCurrent; }
-
-    public TextField getwInput() {
-        return wInput;
-    }
-
-    public TextField gethInput() {
-        return hInput;
-    }
 
     private void operateGUI()
     {
-        /*SET MAIN ANT LIST*/
-        antListCurrent = new ArrayList<>();
-
         /*SET TITLE*/
         window.setTitle("Control Window");
         window.setResizable(false);
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            AlertWindow.popUpClose(new AlertWindow("Are you sure you wan't to exit?"));
-        });
-
 
         /*SET CONTENT PANE*/
         content.setPadding(new Insets(0,5,5,5));
         content.setVgap(8);
         content.setHgap(10);
-        //content.setPrefSize(30,30);
 
         /*ADDING ANTS LABEL*/
         content.add(antsLabel,1,1, 2, 1);
@@ -68,31 +49,10 @@ public class ControlWindow
         /*ADDING PLUS BUTTON*/
         plus.setMinSize(30,30);
         content.add(plus,3,1);
-        plus.setOnAction(e -> {
-
-            if ( (wInput.getText().equals("")) || (hInput.getText().equals("")) ) {
-                AlertWindow.popUp(new AlertWindow("You must enter the size\n     of the board first"));
-                return; }
-
-            AntCreatorWindow.createDialogWindow(
-                    Main.getControlWindow());
-        });
 
         /*ADDING MINUS BUTTON*/
         minus.setMinSize(30,30);
         content.add(minus,4,1);
-
-        minus.setOnAction(e ->{
-
-            if (antListCurrent.isEmpty()) {
-                AlertWindow.popUp(new AlertWindow("You haven't created any Ants yet"));
-                return; }
-
-            int deletedId  = list.getSelectionModel().getSelectedIndex();
-            antListCurrent.remove( deletedId );
-            list.getItems().remove( list.getSelectionModel().getSelectedIndex() );
-
-        });
 
         /*ADDING ANT LIST*/
         list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -152,38 +112,84 @@ public class ControlWindow
         /*APPLYING TO ORIGINAL PANE*/
         content.add(subMenu, 5,7);
 
-
-
-
-         startButton.setOnAction(e -> {
-             try {
-                 if (antListCurrent.isEmpty())
-                 {
-                     AlertWindow.popUp(new AlertWindow("You should add Ants first"));
-                     return;
-                 }
-
-                 int tmpW = Integer.parseInt(wInput.getText());
-                 int tmpH = Integer.parseInt(hInput.getText());
-                 int tmpSteps = Integer.parseInt(stepsInput.getText());
-
-                 if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
-                     AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
-                     return; }
-                 if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
-                     AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
-                     return; }
-
-                 Main.setVisualWindow(new VisualWindow(tmpW, tmpH, tmpSteps));
-                 System.out.printf("Created new Visual Window, size: %d by %d cells\n", tmpW, tmpH);
-             }
-             catch (NumberFormatException e1) {
-                 AlertWindow.popUp(new AlertWindow("You must enter the values above first")); }
-
-                 });
+        /*ANIMATE CLOSE, PLUS/MINUS AND CREATE BUTTON*/
+        animateButtons();
     }
 
-    public void updateInfoBox(int id, ArrayList<Ant> antList) {
+    /*ANIMATE CLOSE, PLUS/MINUS AND CREATE BUTTON*/
+    private void animateButtons()
+    {
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            AlertWindow.popUpClose(new AlertWindow("Are you sure you wan't to exit?"));
+        });
+
+        plus.setOnAction(e -> {
+
+            if ( (wInput.getText().equals("")) || (hInput.getText().equals("")) ) {
+                AlertWindow.popUp(new AlertWindow("You must enter the size\n     of the board first"));
+                return; }
+
+            AntCreatorWindow.createDialogWindow(
+                    Main.getControlWindow());
+        });
+
+        minus.setOnAction(e ->{
+            if (antListCurrent.isEmpty()) {
+                AlertWindow.popUp(new AlertWindow("You haven't created any Ants yet"));
+                return; }
+
+            int deletedId  = list.getSelectionModel().getSelectedIndex();
+            antListCurrent.remove( deletedId );
+            list.getItems().remove( list.getSelectionModel().getSelectedIndex() );
+
+        });
+
+        startButton.setOnAction(e -> {
+            try {
+                if (antListCurrent.isEmpty())
+                {
+                    AlertWindow.popUp(new AlertWindow("You should add Ants first"));
+                    return;
+                }
+
+                int tmpW = Integer.parseInt(wInput.getText());
+                int tmpH = Integer.parseInt(hInput.getText());
+                int tmpSteps = Integer.parseInt(stepsInput.getText());
+
+                ArrayList<String> badList = new ArrayList<>();
+
+                for (Ant ant : antListCurrent)
+                    if ( (ant.getX() > tmpW)||(ant.getY() > tmpH) )
+                        badList.add(ant.getId());
+
+                if (!badList.isEmpty()) {
+                    AlertWindow.popUp(
+                            new AlertWindow("The following Ants cannot be\nplaced on this board:\n"
+                                    + badList.toString()));
+                    return;
+                }
+
+                if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
+                    AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
+                    return; }
+                if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
+                    AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
+                    return; }
+
+                Main.setVisualWindow(new VisualWindow(tmpW, tmpH, tmpSteps));
+                System.out.printf("Created new Visual Window, size: %d by %d cells\n", tmpW, tmpH);
+            }
+            catch (NumberFormatException e1) {
+                AlertWindow.popUp(new AlertWindow("You must enter the values above first")); }
+
+        });
+
+    }
+
+
+    /*UPDATE INFOBOX OR CLEAR IF EMPTY*/
+    private void updateInfoBox(int id, ArrayList<Ant> antList) {
 
         if (antList.isEmpty()) {
             infoBlock.getItems().clear();
@@ -201,13 +207,13 @@ public class ControlWindow
         );
     }
 
-    public void addToAntList(String id) {
 
-        this.list.getItems().add(id);
-        this.list.getSelectionModel().selectLast();
-    }
 
-    public ControlWindow(Stage primaryStage) {
+    /*CONSTRUCTOR*/
+    ControlWindow(Stage primaryStage) {
+
+        antListCurrent = new ArrayList<>();
+
         window = primaryStage;
 
         content = new GridPane();
@@ -243,14 +249,30 @@ public class ControlWindow
         startButton = new Button("Create New Window");
 
         operateGUI();
-//        content.getStylesheets().add("ControlWindowStyle.css");
         window.setScene(new Scene(content, WINDOW_WIDTH, WINDOW_HEIGHT));
         window.show();
         System.out.println("Created new Control Window");
 
     }
 
+    /*ADDING ANT'S TITLE TO VISIBLE LIST*/
+    void addToAntList(String id) {
 
-    public Button getStartButton() { return startButton; }
+        this.list.getItems().add(id);
+        this.list.getSelectionModel().selectLast();
+    }
+
+    /*ACCESSORS AND MUTATORS*/
+    static ArrayList<Ant> getAntListCurrent() { return antListCurrent; }
+
+    TextField getwInput() {
+        return wInput;
+    }
+
+    TextField gethInput() {
+        return hInput;
+    }
+
+    Button getStartButton() { return startButton; }
 
 }

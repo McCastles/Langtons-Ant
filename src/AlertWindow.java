@@ -9,7 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class AlertWindow {
+class AlertWindow {
 
     private final int WINDOW_WIDTH = 400;
     private final int WINDOW_HEIGHT = 200;
@@ -17,7 +17,8 @@ public class AlertWindow {
     private Stage window;
     private VBox content;
 
-    public AlertWindow(String message)
+    /*CONSTRUCTOR*/
+    AlertWindow(String message)
     {
         window = new Stage();
         window.setAlwaysOnTop(true);
@@ -32,7 +33,8 @@ public class AlertWindow {
 
     }
 
-    public static void popUpClose (AlertWindow alertWindow)
+    /*ASK IF THE USER IS SURE*/
+    static void popUpClose (AlertWindow alertWindow)
     {
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");
@@ -50,7 +52,8 @@ public class AlertWindow {
         alertWindow.window.show();
     }
 
-    public static void popUp (AlertWindow alertWindow)
+    /*POP UP MESSAGE*/
+    static void popUp (AlertWindow alertWindow)
     {
         Button okButton = new Button("Return");
 

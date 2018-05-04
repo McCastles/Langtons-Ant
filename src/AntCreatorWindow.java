@@ -11,19 +11,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 
 public class AntCreatorWindow {
     private final static int WINDOW_WIDTH = 400;
     private final static int WINDOW_HEIGHT = 250;
     private final static int indicatorSize = 20;
 
-    public static void createDialogWindow(ControlWindow controlWindow)
+    static void createDialogWindow(ControlWindow controlWindow)
     {
         Stage dialogWindow = new Stage();
         dialogWindow.setTitle("Ant Creator");
-//        dialogWindow.setAlwaysOnTop(true);
 
         dialogWindow.setResizable(false);
         dialogWindow.initModality(Modality.APPLICATION_MODAL);
@@ -150,23 +147,13 @@ public class AntCreatorWindow {
                         controlWindow.addToAntList(idInput.getText());
                         dialogWindow.close();
 
-                    } catch (NumberFormatException e1)
-                    {
-                        AlertWindow.popUp(new AlertWindow("You must fill\nthe fields first"));
-                    }
-                        /*idInput.clear();
-                        idInput.setPromptText("You must fill this filed first");
-                        xInput.clear();
-                        xInput.setPromptText("You must fill this filed first");
-                        yInput.clear();
-                        yInput.setPromptText("You must fill this filed first");}*/
-
+                    } catch (NumberFormatException e1) {
+                        AlertWindow.popUp(new AlertWindow("You must fill\nthe fields first")); }
 
                 }
         );
 
         /*APPLY*/
-//        pane.getStylesheets().add("ControlWindowStyle.css");
         dialogWindow.setScene(new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT));
         dialogWindow.show();
     }

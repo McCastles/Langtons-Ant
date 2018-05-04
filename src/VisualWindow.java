@@ -1,8 +1,6 @@
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,21 +10,18 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class VisualWindow {
-    final private int CELLSIZE = 6;
+    final private static int CELLSIZE = 6;
     private int steps;
     private Stage window;
-    private VBox content;
     private GridPane pane;
     private ArrayList<Ant> antList;
     private Board board;
     private Button startButton;
     private Button stopButton;
-/*    private Label stepsOutput;
-    private Label stepsLabel;*/
     private volatile boolean threadRunning = false;
 
 
-    public VisualWindow(int width, int height, int stepsLimit) {
+    VisualWindow(int width, int height, int stepsLimit) {
 
         /*NULLIFY STEPS COUNTER*/
         steps = 0;
@@ -51,7 +46,7 @@ public class VisualWindow {
         });
 
         /*VBox*/
-        content = new VBox(10);
+        VBox content = new VBox(10);
         content.setPadding(new Insets(10));
 
         /*SET GRAY GRID*/
@@ -79,8 +74,6 @@ public class VisualWindow {
         /*ADDING BUTTONS*/
         startButton = new Button("Start");
         stopButton = new Button("Stop");
-//        stepsOutput = new Label("0");
-//        stepsLabel = new Label("Step:");
 
         stopButton.setOnAction(e -> {
             stopButton.setDisable(true);
@@ -94,7 +87,6 @@ public class VisualWindow {
             beginGameLoop(stepsLimit);});
 
         HBox buttons = new HBox(20);
-//        buttons.getChildren().addAll(startButton, stopButton, stepsLabel, stepsOutput);
         buttons.getChildren().addAll(startButton, stopButton);
 
         /*APPLYING EVERYTHING ON THE SCREEN*/
@@ -123,16 +115,6 @@ public class VisualWindow {
 
                     steps++;
 
-                   /* try
-                    {
-                        stepsOutput.setText(Integer.toString(steps));
-
-                    }catch (NullPointerException e)
-                    {
-                        System.out.println("loh");
-                    }*/
-
-
                     if (steps == stepsLimit)
                     {
                         startButton.setDisable(true);
@@ -153,9 +135,5 @@ public class VisualWindow {
 
     private void stopGameLoop()
     { threadRunning = false; System.out.println("Stopped");}
-
-
-
-
 
 }

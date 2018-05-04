@@ -12,11 +12,10 @@ public class Ant{
     private int x;
     private int y;
     private Color color;
-//    private String color;
     private Dir dir;
 
     /* CLONING CONSTRUCTOR */
-    public Ant(Ant ant)
+    Ant(Ant ant)
     {
         this.id = ant.id;
         this.isAlive = ant.isAlive;
@@ -27,7 +26,7 @@ public class Ant{
     }
 
     /* CONSTRUCTOR */
-    public Ant(String id, boolean isAlive, int x, int y, Color color, Dir dir)
+    Ant(String id, boolean isAlive, int x, int y, Color color, Dir dir)
     {
         this.id = id;
         this.isAlive = isAlive;
@@ -37,7 +36,8 @@ public class Ant{
         this.dir = dir;
     }
 
-    public void paintCell(GridPane pane, int x, int y, Color color)
+    /*PAINT THE CELL ON (X,Y)*/
+    void paintCell(GridPane pane, int x, int y, Color color)
     {
         Rectangle rectangle = new Rectangle();
 
@@ -48,7 +48,8 @@ public class Ant{
         rectangle.setFill(color);
     }
 
-    public void antStep(Board board, GridPane pane)
+    /*MOVE FOR THE NEXT STEP*/
+    void antStep(Board board, GridPane pane)
     {
         if (board.getTableElement(x,y) == 0) {
 
@@ -64,7 +65,7 @@ public class Ant{
         antMove(board);
     }
 
-
+    /*CHANGE POSITION OF THE ANT*/
     private void antMove(Board board)
     {
         switch (dir)
@@ -74,11 +75,9 @@ public class Ant{
             case DOWN: if (y == (board.getHeight()-1)) isAlive = false; else y++; break;
             case LEFT: if (x == 0) isAlive = false; else x--; break;
         }
-
-
-
     }
 
+    /*CHANGE DIRECTION OF THE ANT*/
     private void antTurn(Dir direction)
     {
         if (direction == Dir.RIGHT)
@@ -99,8 +98,8 @@ public class Ant{
             }
     }
 
-
-    public static Color assignColor(String color)
+    /*STRING TO COLOR*/
+    static Color assignColor(String color)
     {
         switch (color)
         {
@@ -115,28 +114,29 @@ public class Ant{
         return Color.BLACK;
     }
 
-    public String getId() {
+    /*ACCESSORS AND MUTATORS*/
+    String getId() {
         return id;
     }
 
-    public Dir getDir()
+    Dir getDir()
     {
         return dir;
     }
 
-    public boolean getIsAlive() {
+    boolean getIsAlive() {
         return isAlive;
     }
 
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public Color getColor() {
+    Color getColor() {
         return color;
     }
 
