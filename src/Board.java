@@ -9,8 +9,6 @@ public class Board {
         this.height = height;
         this.width = width;
         this.table = new int[height][width];
-//        System.out.println(Arrays.deepToString(table));
-
     }
 
     public int getTableElement(int x, int y) {

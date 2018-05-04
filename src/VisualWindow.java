@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class VisualWindow {
     final private int CELLSIZE = 6;
-    private int steps = 0;
+    private int steps;
     private Stage window;
     private VBox content;
     private GridPane pane;
@@ -21,16 +21,19 @@ public class VisualWindow {
     private Board board;
     private Button startButton;
     private Button stopButton;
-    private Label stepsOutput;
-    private Label stepsLabel;
+/*    private Label stepsOutput;
+    private Label stepsLabel;*/
     private volatile boolean threadRunning = false;
 
 
     public VisualWindow(int width, int height, int stepsLimit) {
 
+        /*NULLIFY STEPS COUNTER*/
+        steps = 0;
+
         /*ANT LIST*/
         antList = new ArrayList<>();
-        for (Ant ant : Main.getAntListCurrent())
+        for (Ant ant : ControlWindow.getAntListCurrent())
             antList.add( new Ant(ant) );
 
         /*BOARD*/
@@ -76,9 +79,8 @@ public class VisualWindow {
         /*ADDING BUTTONS*/
         startButton = new Button("Start");
         stopButton = new Button("Stop");
-        stepsOutput = new Label("0");
-//        stepsOutput.setDisable(true);
-        stepsLabel = new Label("Step:");
+//        stepsOutput = new Label("0");
+//        stepsLabel = new Label("Step:");
 
         stopButton.setOnAction(e -> {
             stopButton.setDisable(true);
@@ -92,7 +94,8 @@ public class VisualWindow {
             beginGameLoop(stepsLimit);});
 
         HBox buttons = new HBox(20);
-        buttons.getChildren().addAll(startButton, stopButton, stepsLabel, stepsOutput);
+//        buttons.getChildren().addAll(startButton, stopButton, stepsLabel, stepsOutput);
+        buttons.getChildren().addAll(startButton, stopButton);
 
         /*APPLYING EVERYTHING ON THE SCREEN*/
         content.getChildren().addAll(pane, buttons);
@@ -120,6 +123,16 @@ public class VisualWindow {
 
                     steps++;
 
+                   /* try
+                    {
+                        stepsOutput.setText(Integer.toString(steps));
+
+                    }catch (NullPointerException e)
+                    {
+                        System.out.println("loh");
+                    }*/
+
+
                     if (steps == stepsLimit)
                     {
                         startButton.setDisable(true);
@@ -128,9 +141,9 @@ public class VisualWindow {
                     }
 
                     /*try
-                        { Thread.sleep(100); }
+                        { Thread.sleep(1000); }
                     catch (InterruptedException e)
-                        { System.out.println("Interrupted!"); } */
+                        { System.out.println("Interrupted!"); }*/
                 }
             }
         });

@@ -13,22 +13,18 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-/*TODO
- * all fields in window must be filled
- * BUG: duplicate names
- *
- * */
 
 public class AntCreatorWindow {
     private final static int WINDOW_WIDTH = 400;
     private final static int WINDOW_HEIGHT = 250;
     private final static int indicatorSize = 20;
 
-    public static void createDialogWindow(ControlWindow controlWindow, ArrayList antListCurrent)
+    public static void createDialogWindow(ControlWindow controlWindow)
     {
         Stage dialogWindow = new Stage();
         dialogWindow.setTitle("Ant Creator");
-        dialogWindow.setAlwaysOnTop(true);
+//        dialogWindow.setAlwaysOnTop(true);
+
         dialogWindow.setResizable(false);
         dialogWindow.initModality(Modality.APPLICATION_MODAL);
         GridPane pane = new GridPane();
@@ -69,8 +65,6 @@ public class AntCreatorWindow {
         colorChoice.getSelectionModel().selectedItemProperty().addListener(
                 (v, oldValue, newValue) ->
                     colorIndicator.setFill( Ant.assignColor(newValue) ));
-
-
 
         HBox colorBoxIndicator = new HBox(20);
         colorBoxIndicator.getChildren().addAll(colorIndicator, colorChoice);
@@ -123,19 +117,29 @@ public class AntCreatorWindow {
         okButton.setOnAction(e ->
                 {
                     try{
-                        for(Ant ant : Main.getAntListCurrent())
+                        for(Ant ant : ControlWindow.getAntListCurrent())
                             if (ant.getId().equals(idInput.getText())) {
                                 idInput.clear();
                                 idInput.setPromptText("Ant with this ID already exists");
                                 return; }
 
+                        int tmpX = Integer.parseInt(xInput.getText());
+                        int tmpY = Integer.parseInt(yInput.getText());
+
+                        if( ( tmpX >= Integer.parseInt(controlWindow.getwInput().getText()) ) || (tmpX < 0)) {
+                            AlertWindow.popUp(new AlertWindow("The X coordinate has an\n  inappropriate value"));
+                            return; }
+
+                        if( ( tmpY >= Integer.parseInt(controlWindow.gethInput().getText()) ) || (tmpY < 0)) {
+                            AlertWindow.popUp(new AlertWindow("The Y coordinate has an\n  inappropriate value"));
+                            return; }
 
                         Ant.Dir tmpDir = Ant.Dir.UP;
                         if (rightRadioButton.isSelected()) tmpDir = Ant.Dir.RIGHT;
                         if (downRadioButton.isSelected()) tmpDir = Ant.Dir.DOWN;
                         if (leftRadioButton.isSelected()) tmpDir = Ant.Dir.LEFT;
 
-                        antListCurrent.add( new Ant(
+                        ControlWindow.getAntListCurrent().add( new Ant(
                                 idInput.getText(),
                                 aliveCheck.isSelected(),
                                 Integer.parseInt(xInput.getText()),
@@ -148,12 +152,14 @@ public class AntCreatorWindow {
 
                     } catch (NumberFormatException e1)
                     {
-                        idInput.clear();
+                        AlertWindow.popUp(new AlertWindow("You must fill\nthe fields first"));
+                    }
+                        /*idInput.clear();
                         idInput.setPromptText("You must fill this filed first");
                         xInput.clear();
                         xInput.setPromptText("You must fill this filed first");
                         yInput.clear();
-                        yInput.setPromptText("You must fill this filed first");}
+                        yInput.setPromptText("You must fill this filed first");}*/
 
 
                 }

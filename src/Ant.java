@@ -75,6 +75,8 @@ public class Ant{
             case LEFT: if (x == 0) isAlive = false; else x--; break;
         }
 
+
+
     }
 
     private void antTurn(Dir direction)
@@ -82,7 +84,7 @@ public class Ant{
         if (direction == Dir.RIGHT)
             switch (dir)
             {
-                case UP: dir = Dir.RIGHT;; break;
+                case UP: dir = Dir.RIGHT; break;
                 case RIGHT: dir = Dir.DOWN; break;
                 case DOWN: dir = Dir.LEFT; break;
                 case LEFT: dir = Dir.UP; break;

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ControlWindow
 {
-    final private int MAX_SIZE = 250;
-    final private int MIN_SIZE = 100;
+    private final int MAX_SIZE = 200;
+    private final int MIN_SIZE = 50;
     private final int WINDOW_WIDTH = 580;
     private final int WINDOW_HEIGHT = 660;
     private Stage window;
@@ -30,13 +30,31 @@ public class ControlWindow
     private Label hLabel;
     private TextField hInput;
     private Button startButton;
+    private static ArrayList<Ant> antListCurrent;
+
+    public static ArrayList<Ant> getAntListCurrent() { return antListCurrent; }
+
+    public TextField getwInput() {
+        return wInput;
+    }
+
+    public TextField gethInput() {
+        return hInput;
+    }
 
     private void operateGUI()
     {
+        /*SET MAIN ANT LIST*/
+        antListCurrent = new ArrayList<>();
+
         /*SET TITLE*/
         window.setTitle("Control Window");
         window.setResizable(false);
-        /*TODO close program*/
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            AlertWindow.popUpClose(new AlertWindow("Are you sure you wan't to exit?"));
+        });
+
 
         /*SET CONTENT PANE*/
         content.setPadding(new Insets(0,5,5,5));
@@ -50,16 +68,37 @@ public class ControlWindow
         /*ADDING PLUS BUTTON*/
         plus.setMinSize(30,30);
         content.add(plus,3,1);
+        plus.setOnAction(e -> {
+
+            if ( (wInput.getText().equals("")) || (hInput.getText().equals("")) ) {
+                AlertWindow.popUp(new AlertWindow("You must enter the size\n     of the board first"));
+                return; }
+
+            AntCreatorWindow.createDialogWindow(
+                    Main.getControlWindow());
+        });
 
         /*ADDING MINUS BUTTON*/
         minus.setMinSize(30,30);
         content.add(minus,4,1);
 
+        minus.setOnAction(e ->{
+
+            if (antListCurrent.isEmpty()) {
+                AlertWindow.popUp(new AlertWindow("You haven't created any Ants yet"));
+                return; }
+
+            int deletedId  = list.getSelectionModel().getSelectedIndex();
+            antListCurrent.remove( deletedId );
+            list.getItems().remove( list.getSelectionModel().getSelectedIndex() );
+
+        });
+
         /*ADDING ANT LIST*/
         list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         list.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) ->
            updateInfoBox(list.getSelectionModel().getSelectedIndex(),
-                   Main.getAntListCurrent())
+                   antListCurrent)
         );
 
         content.add(list, 1,2,4,7);
@@ -105,6 +144,7 @@ public class ControlWindow
         hInput.setPromptText(String.valueOf(MIN_SIZE) + " - " + String.valueOf(MAX_SIZE));
         subMenu.add(hInput, 1,2);
 
+
         /*ADDING BUTTON*/
         startButton.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
         subMenu.add(startButton, 1,3);
@@ -112,30 +152,43 @@ public class ControlWindow
         /*APPLYING TO ORIGINAL PANE*/
         content.add(subMenu, 5,7);
 
+
+
+
          startButton.setOnAction(e -> {
-             try{
+             try {
+                 if (antListCurrent.isEmpty())
+                 {
+                     AlertWindow.popUp(new AlertWindow("You should add Ants first"));
+                     return;
+                 }
+
                  int tmpW = Integer.parseInt(wInput.getText());
                  int tmpH = Integer.parseInt(hInput.getText());
                  int tmpSteps = Integer.parseInt(stepsInput.getText());
 
                  if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
-                     hInput.clear();
+                     AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
                      return; }
                  if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
-                     wInput.clear();
+                     AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
                      return; }
 
                  Main.setVisualWindow(new VisualWindow(tmpW, tmpH, tmpSteps));
                  System.out.printf("Created new Visual Window, size: %d by %d cells\n", tmpW, tmpH);
              }
              catch (NumberFormatException e1) {
-                 hInput.clear();
-                 wInput.clear(); }
+                 AlertWindow.popUp(new AlertWindow("You must enter the values above first")); }
 
                  });
     }
 
     public void updateInfoBox(int id, ArrayList<Ant> antList) {
+
+        if (antList.isEmpty()) {
+            infoBlock.getItems().clear();
+            return; }
+
         Ant proto = antList.get(id);
         infoBlock.getItems().clear();
         infoBlock.getItems().addAll(
@@ -197,7 +250,6 @@ public class ControlWindow
 
     }
 
-    public Button getPlus() { return plus; }
 
     public Button getStartButton() { return startButton; }
 
