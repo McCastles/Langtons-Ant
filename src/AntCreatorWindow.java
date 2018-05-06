@@ -117,18 +117,18 @@ public class AntCreatorWindow {
                         for(Ant ant : ControlWindow.getAntListCurrent())
                             if (ant.getId().equals(idInput.getText())) {
                                 idInput.clear();
-                                idInput.setPromptText("Ant with this ID already exists");
+                                idInput.setPromptText("Ant with this ID already exists.");
                                 return; }
 
                         int tmpX = Integer.parseInt(xInput.getText());
                         int tmpY = Integer.parseInt(yInput.getText());
 
                         if( ( tmpX >= Integer.parseInt(controlWindow.getwInput().getText()) ) || (tmpX < 0)) {
-                            AlertWindow.popUp(new AlertWindow("The X coordinate has an\n  inappropriate value"));
+                            Main.popUpMessage("The X coordinate has an inappropriate value.");
                             return; }
 
                         if( ( tmpY >= Integer.parseInt(controlWindow.gethInput().getText()) ) || (tmpY < 0)) {
-                            AlertWindow.popUp(new AlertWindow("The Y coordinate has an\n  inappropriate value"));
+                            Main.popUpMessage("The Y coordinate has an inappropriate value.");
                             return; }
 
                         Ant.Dir tmpDir = Ant.Dir.UP;
@@ -148,7 +148,7 @@ public class AntCreatorWindow {
                         dialogWindow.close();
 
                     } catch (NumberFormatException e1) {
-                        AlertWindow.popUp(new AlertWindow("You must fill\nthe fields first")); }
+                        Main.popUpMessage("You must fill the fields first."); }
 
                 }
         );

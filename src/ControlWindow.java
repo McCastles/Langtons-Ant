@@ -5,6 +5,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ControlWindow
 {
@@ -121,13 +122,23 @@ public class ControlWindow
     {
         window.setOnCloseRequest(e -> {
             e.consume();
-            AlertWindow.popUpClose(new AlertWindow("Are you sure you wan't to exit?"));
+//            AlertWindow.popUpClose(new AlertWindow("Are you sure you wan't to exit?"));
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit the Langton's Ant Simulator?");
+            alert.setTitle("Something went wrong");
+            alert.setHeaderText("");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                System.exit(0);
+            } else {
+                alert.close();
+            }
         });
 
         plus.setOnAction(e -> {
 
             if ( (wInput.getText().equals("")) || (hInput.getText().equals("")) ) {
-                AlertWindow.popUp(new AlertWindow("You must enter the size\n     of the board first"));
+                Main.popUpMessage("You must enter the size of the board first.");
                 return; }
 
             AntCreatorWindow.createDialogWindow(
@@ -136,7 +147,8 @@ public class ControlWindow
 
         minus.setOnAction(e ->{
             if (antListCurrent.isEmpty()) {
-                AlertWindow.popUp(new AlertWindow("You haven't created any Ants yet"));
+                Main.popUpMessage("You haven't created any Ants yet.");
+
                 return; }
 
             int deletedId  = list.getSelectionModel().getSelectedIndex();
@@ -147,48 +159,45 @@ public class ControlWindow
 
         startButton.setOnAction(e -> {
             try {
-                if (antListCurrent.isEmpty())
-                {
-                    AlertWindow.popUp(new AlertWindow("You should add Ants first"));
-                    return;
-                }
 
                 int tmpW = Integer.parseInt(wInput.getText());
                 int tmpH = Integer.parseInt(hInput.getText());
                 int tmpSteps = Integer.parseInt(stepsInput.getText());
 
-                ArrayList<String> badList = new ArrayList<>();
+                if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
+                    Main.popUpMessage("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range.");
+                    return; }
+                if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
+                    Main.popUpMessage("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range.");
+                    return; }
 
+                if (antListCurrent.isEmpty()) {
+                    Main.popUpMessage("You should add Ants first.");
+                    return; }
+
+                ArrayList<String> badList = new ArrayList<>();
                 for (Ant ant : antListCurrent)
                     if ( (ant.getX() > tmpW)||(ant.getY() > tmpH) )
                         badList.add(ant.getId());
-
                 if (!badList.isEmpty()) {
-                    AlertWindow.popUp(
-                            new AlertWindow("The following Ants cannot be\nplaced on this board:\n"
-                                    + badList.toString()));
-                    return;
-                }
-
-                if ((tmpH < MIN_SIZE)||(tmpH > MAX_SIZE)) {
-                    AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
-                    return; }
-                if ((tmpW < MIN_SIZE)||(tmpW > MAX_SIZE)) {
-                    AlertWindow.popUp(new AlertWindow("The values must be within "+MIN_SIZE+"-"+MAX_SIZE+" range"));
+                    Main.popUpMessage("The following Ants cannot be placed on this board: " + badList.toString());
                     return; }
 
                 Main.setVisualWindow(new VisualWindow(tmpW, tmpH, tmpSteps));
                 System.out.printf("Created new Visual Window, size: %d by %d cells\n", tmpW, tmpH);
             }
             catch (NumberFormatException e1) {
-                AlertWindow.popUp(new AlertWindow("You must enter the values above first")); }
+                Main.popUpMessage("You must enter the values above first."); }
+
+                /*TODO colors as string
+                * TODO 0-49 cells*/
 
         });
 
     }
 
 
-    /*UPDATE INFOBOX OR CLEAR IF EMPTY*/
+    /*UPDATE INFO BOX OR CLEAR IF EMPTY*/
     private void updateInfoBox(int id, ArrayList<Ant> antList) {
 
         if (antList.isEmpty()) {

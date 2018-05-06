@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,6 +19,14 @@ public class Main extends Application {
 
     static void setVisualWindow(VisualWindow newVisualWindow)
     { visualWindow = newVisualWindow; controlWindow.getStartButton().setDisable(true); }
+
+    static void popUpMessage(String msg)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg);
+        alert.setTitle("Something went wrong");
+        alert.setHeaderText("");
+        alert.showAndWait();
+    }
 
 
 
