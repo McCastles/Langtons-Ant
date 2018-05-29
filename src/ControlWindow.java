@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class ControlWindow
 {
-    private final int MAX_SIZE = 200;
+    private final int MAX_SIZE = 120;
     private final int MIN_SIZE = 50;
     private final int WINDOW_WIDTH = 580;
     private final int WINDOW_HEIGHT = 660;
@@ -209,7 +209,7 @@ public class ControlWindow
         infoBlock.getItems().addAll(
                 details.get(0) + proto.getId(),
                 details.get(1) + proto.getIsAlive(),
-                details.get(2) + proto.getColor(),
+//                details.get(2) + proto.getColor(),
                 details.get(3) + proto.getDir(),
                 details.get(4) + proto.getX(),
                 details.get(5) + proto.getY()
