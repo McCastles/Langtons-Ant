@@ -100,6 +100,11 @@ public class VisualWindow {
     /* lambda? */
     private void beginGameLoop(int stepsLimit)
     {
+        if (steps == 0)
+            System.out.println("Started new Game");
+        else
+            System.out.println("Continue");
+
         Thread t = new Thread (
             new Runnable() {
 
