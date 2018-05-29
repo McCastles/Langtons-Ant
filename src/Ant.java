@@ -98,6 +98,19 @@ public class Ant{
             }
     }
 
+    /*COLOR TO STRING*/
+    static String colorToString(Color color)
+    {
+        if (color == Color.BLACK) return "Black";
+        if (color == Color.RED) return "Red";
+        if (color == Color.GREEN) return "Green";
+        if (color == Color.BLUE) return "Blue";
+        if (color == Color.YELLOW) return "Yellow";
+        if (color == Color.ORANGE) return "Orange";
+
+        return "Black";
+    }
+
     /*STRING TO COLOR*/
     static Color assignColor(String color)
     {

@@ -209,7 +209,7 @@ public class ControlWindow
         infoBlock.getItems().addAll(
                 details.get(0) + proto.getId(),
                 details.get(1) + proto.getIsAlive(),
-         //       details.get(2) + proto.getColor(),
+                details.get(2) + Ant.colorToString(proto.getColor()),
                 details.get(3) + proto.getDir(),
                 details.get(4) + (proto.getX()+1) ,
                 details.get(5) + (proto.getY()+1)
