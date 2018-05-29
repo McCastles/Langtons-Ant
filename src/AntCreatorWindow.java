@@ -120,8 +120,8 @@ public class AntCreatorWindow {
                                 idInput.setPromptText("Ant with this ID already exists.");
                                 return; }
 
-                        int tmpX = Integer.parseInt(xInput.getText());
-                        int tmpY = Integer.parseInt(yInput.getText());
+                        int tmpX = Integer.parseInt(xInput.getText()) - 1;
+                        int tmpY = Integer.parseInt(yInput.getText()) - 1;
 
                         if( ( tmpX >= Integer.parseInt(controlWindow.getwInput().getText()) ) || (tmpX < 0)) {
                             Main.popUpMessage("The X coordinate has an inappropriate value.");
@@ -139,8 +139,8 @@ public class AntCreatorWindow {
                         ControlWindow.getAntListCurrent().add( new Ant(
                                 idInput.getText(),
                                 aliveCheck.isSelected(),
-                                Integer.parseInt(xInput.getText()),
-                                Integer.parseInt(yInput.getText()),
+                                tmpX,
+                                tmpY,
                                 Ant.assignColor(colorChoice.getValue()),
                                 tmpDir ));
 
